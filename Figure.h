@@ -18,7 +18,7 @@ class Figure {
         * getTopLeft
         * @return double
         */
-        Point getToplLeft() {
+        Point getTopLeft() {
             return this->_topLeft;
         }
 
@@ -27,9 +27,9 @@ class Figure {
         * @param double coordinate - coordinate of this point
         * @return void
         */
-        void setToplLeft(double x, double y) {
-            this->_topLeft.x = x;
-            this->_topLeft.y = y;
+        void setTopLeft(Point point) {
+            this->_topLeft.x = point.x;
+            this->_topLeft.y = point.y;
         }
 
         /**
@@ -45,9 +45,9 @@ class Figure {
         * @param double coordinate - coordinate of this point
         * @return void
         */
-        void setBottomRight(double x, double y) {
-            this->_bottomRight.x = x;
-            this->_bottomRight.y = y;
+        void setBottomRight(Point point) {
+            this->_bottomRight.x = point.x;
+            this->_bottomRight.y = point.y;
         }
 
         /**
@@ -77,13 +77,21 @@ class Figure {
         void setBorder(Border border) {
             this->_border = border;
         }
+        
+        Border getBorder() {
+        	return this->_border;
+        }
 
         /**
         * setBackground
         * @param RGB - color of background in rgb
         */
-        virtual void setBackground(colorRGB RGB) {
+        void setBackground(colorRGB RGB) {
             this->_backgroundRGB = RGB;
+        }
+        
+        colorRGB getBackground() {
+        	return this->_backgroundRGB;
         }
 
         virtual void horizontalReflect(){}

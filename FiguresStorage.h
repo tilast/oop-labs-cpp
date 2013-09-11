@@ -40,31 +40,36 @@ class FiguresStorage {
         * @param vector<int> background
         * @return void
         */
-        int addRectangle(Point topLeft, Point bottomRight, Border border, colorRGB background) {
+        Rectangle* addRectangle(Point topLeft, Point bottomRight, Border border, colorRGB background) {
             Rectangle * newRect = new Rectangle(topLeft, bottomRight, border, background);
             this->_figures.push_back(newRect);
-            return newRect->getId();
+            return newRect;
         }
-        int addRectangle(Point topLeft, Point bottomRight) {
+        Rectangle* addRectangle(Point topLeft, Point bottomRight) {
             Rectangle * newRect = new Rectangle(topLeft, bottomRight);
             this->_figures.push_back(newRect);
-            return newRect->getId();
+            return newRect;
         }
 
-        int addParallelogram(Point topLeft, Point bottomRight, double controlPoint, Border border, colorRGB background) {
+        Parallelogram* addParallelogram(Point topLeft, Point bottomRight, double controlPoint, Border border, colorRGB background) {
             Parallelogram * newPar = new Parallelogram(topLeft, bottomRight, controlPoint, border, background);
             this->_figures.push_back(newPar);
-            return newPar->getId();
+            return newPar;
         }
-        int addParallelogram(Point topLeft, Point bottomRight, double controlPoint) {
+        Parallelogram* addParallelogram(Point topLeft, Point bottomRight, double controlPoint) {
             Parallelogram * newPar = new Parallelogram(topLeft, bottomRight, controlPoint);
             this->_figures.push_back(newPar);
-            return newPar->getId();
+            return newPar;
         }
-        int addParallelogram(Point topLeft, Point bottomRight) {
+        Parallelogram* addParallelogram(Point topLeft, Point bottomRight) {
             Parallelogram * newPar = new Parallelogram(topLeft, bottomRight);
             this->_figures.push_back(newPar);
-            return newPar->getId();
+            return newPar;
+        }
+        Zigzag* addZigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points, Border border) {
+        	Zigzag * newZig = new Zigzag(topLeft, bottomRight, stepsAmount, points, border);
+        	this->_figures.push_back(newZig);
+        	return newZig;
         }
         /**
         * getAmount

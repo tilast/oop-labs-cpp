@@ -35,8 +35,10 @@ int main()
     // create objects for storage and console
 	FiguresStorage* storage = new FiguresStorage();
     FiguresConsole *console = new FiguresConsole();
+    Figure * currentFigure = NULL;
+    FiguresGroup * currentGroup = NULL;
     // variable for working loop
-	bool exit = false;
+	bool exit = false, excessiveSymbol = false;
     
 	console->outHello();
     console->outInputCommand();
@@ -47,7 +49,7 @@ int main()
         //console->outInputCommand();
         // take command
 		getline(cin, command);
-        
+
         // split string by white-space
 		stringstream tmp(command);
         string tmpStr;
@@ -57,16 +59,22 @@ int main()
             getline(tmp, tmpStr, ' ');
             commands.push_back(tmpStr);
         }
+        
+        if(commands.size() < 4) {
+        	for(int i = commands.size() -1; i < 4; i++) {
+        		commands.push_back("");
+        	}
+        }
 
 		// choose command
         if(!commands[0].compare("add")) {
             if(!commands[1].compare("figure")) {
-                console->outTopLeft();
-                Point topLeft = console->getPoint();
-                console->outBottomRight();
-                Point bottomRight = console->getPoint();
-
 				if(!commands[2].compare("rectangle")) {
+					console->outTopLeft();
+        	        Point topLeft = console->getPoint();
+    	            console->outBottomRight();
+	                Point bottomRight = console->getPoint();
+	                
                     bool needBorder = false;
                     bool needBackground = false;
 
@@ -84,11 +92,16 @@ int main()
                         background = console->getRGB();
                     }
 
-                    int id = storage->addRectangle(topLeft, bottomRight, border, background);
+                    currentFigure = storage->addRectangle(topLeft, bottomRight, border, background);
 
-                    cout << "ID фігури: " << id << endl;
+                    console->outFigureId(currentFigure);
                 }
                 else if(!commands[2].compare("parallelogram")) {
+                	console->outTopLeft();
+        	        Point topLeft = console->getPoint();
+    	            console->outBottomRight();
+	                Point bottomRight = console->getPoint();
+	                
                 	console->outControlPoint();
                 	double controlPoint = console->getControlPoint();
 					
@@ -109,39 +122,72 @@ int main()
                         background = console->getRGB();
                     }
 
-                    int id = storage->addParallelogram(topLeft, bottomRight, controlPoint, border, background);
+                    currentFigure = storage->addParallelogram(topLeft, bottomRight, controlPoint, border, background);
 
-                    cout << "ID фігури: " << id << endl;
-                }
-                else if(!commands[2].compare("zigzag")) {
+                    console->outFigureId(currentFigure);
+                } else if(!commands[2].compare("zigzag")) {
+                	console->outHowMuchPoints();
+                	int howMuchPoints = console->getInt();
+                	
+					console->outTopLeft();
+        	        Point topLeft = console->getPoint();
+    	            console->outBottomRight();
+	                Point bottomRight = console->getPoint();
+	                
+	                vector<Point> zigzagPoints;
+	                for(int i = 0; i < howMuchPoints - 2; i++) {
+	                	zigzagPoints.push_back(console->getPoint());
+	                	console->outIgnore(1);
+	                }
+                	
+					bool needBorder = false;
+					
+                    console->outNeedBorder();
+                    cin >> needBorder;
+                    Border border;
+                    if(needBorder) {
+                        border = console->getBorder();
+                    }
 
+                    currentFigure = storage->addZigzag(topLeft, bottomRight, howMuchPoints, zigzagPoints, border);
+
+                    console->outFigureId(currentFigure);
+                } else {
+                	console->outWrongCommand(command, &excessiveSymbol);
                 }
             }
             else if(!commands[1].compare("group")) {
-            	FiguresGroup * group = storage->addGroup();
+            	currentGroup = storage->addGroup();
+            } else {
+            	console->outWrongCommand(command, &excessiveSymbol);
             }
         } else if(!commands[0].compare("get")) {
-            if(!commands[1].compare("figures")) {
+            if(!commands[1].compare("figure")) {
                 if(!commands[2].compare("count")) {
                     cout << storage->getAmount() << endl;
-                }
-                if(!commands[2].compare("id")) {
-                    int id = console->getId();
-                    Figure* requiredFigure = storage->find(id);
-                    cout << requiredFigure->getType() << endl;
+                } else if(!commands[2].compare("id")) {
+                	int id = console->getId();
+                    currentFigure = storage->find(id);
+                } else if(!commands[2].compare("info")) {
+                	if(currentFigure) {
+                		console->outFigureInfo(currentFigure, &excessiveSymbol);
+                	} else {
+                		console->outEmptyCurrentFigure(&excessiveSymbol);
+                	}
                 }
             }
         } else if(!commands[0].compare("exit")) {
             exit = true;
             break;
         } else {
-            cout << "Невірна команда" << endl;
-            //exit = true;
+            console->outWrongCommand(command, &excessiveSymbol);
         }
 
-        //cout << "Вийти?(1/0)" << endl;
-        //cin >> exit;
-        //cin.ignore(1);
+        if(!excessiveSymbol) {
+        	console->outIgnore(1);
+        } else {
+        	excessiveSymbol = false;
+        }
     }
     
     return 0;

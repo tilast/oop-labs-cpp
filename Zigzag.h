@@ -8,14 +8,18 @@ class Zigzag: public Figure {
         int _stepsAmount;
         vector<Point> _points;
     public :
-        Zigzag(int stepsAmount, vector<Point> points, Border border):Figure() {
-            this->_stepsAmount = stepsAmount;
+        Zigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points, Border border):Figure() {
+            this->setTopLeft(topLeft);
+            this->setBottomRight(bottomRight);
+			this->_stepsAmount = stepsAmount;
             this->_border = border;
             this->_insurality = false;
             this->_type = 3;
         }
-        Zigzag(int stepsAmount, vector<Point> points):Figure() {
-            this->_stepsAmount = stepsAmount;
+        Zigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points):Figure() {
+            this->setTopLeft(topLeft);
+            this->setBottomRight(bottomRight);
+			this->_stepsAmount = stepsAmount;
             this->_insurality = false;
             this->_type = 3;
         }
@@ -30,6 +34,11 @@ class Zigzag: public Figure {
         void changeSteps(int stepsAmount) {
             this->_stepsAmount = stepsAmount;
             this->_points.erase(this->_points.begin(), this->_points.begin() + stepsAmount);
+        }
+        
+        void deletePoint(int number) {
+        	this->_points.erase(this->_points.begin() + number);
+        	this->_stepsAmount--;
         }
 };
 #endif
