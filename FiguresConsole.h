@@ -117,7 +117,12 @@ class FiguresConsole {
         }
         
         void outFigureInfo(Figure * figure, bool * excessiveSymbol) {
-        	switch(figure->getType()) {
+        	this->outFigureId(figure);
+			this->outPoint("Верхня ліва точка: ", figure->getTopLeft());
+        	this->outPoint("Нижня права точка: ", figure->getBottomRight());
+        	this->outBorder(figure->getBorder());
+        	
+			switch(figure->getType()) {
         		case 1 :
         			this->outRectangleInfo((Rectangle*)figure);
         			break;
@@ -146,20 +151,31 @@ class FiguresConsole {
 		}
         
         void outRectangleInfo(Rectangle * figure) {
-        	this->outPoint("Верхня ліва точка: ", figure->getTopLeft());
-        	this->outPoint("Нижня права точка: ", figure->getBottomRight());
-        	this->outBorder(figure->getBorder());
+        	cout << "Колір тла: ";
+        	this->outColor(figure->getBackground());
 		}
 		void outParallelogramInfo(Parallelogram * figure) {
-        	
+        	this->outPoint("Контрольна точка: ", figure->getControlPoint());
+        	cout << "Колір тла: ";
+        	this->outColor(figure->getBackground());
 		}
 		void outZigzagInfo(Zigzag * figure) {
-        	
+        	cout << "Точки: " << endl;
+        	vector<Point> points = figure->getPoints();
+        	for(int i = 0; i < points.size(); i++) {
+        		this->outPoint("", points[i]);
+        	}
 		}
 		
 		void outEmptyCurrentFigure(bool *wrongCommand) {
 			cout << "Ви не обрали фігуру" << endl;
 			*wrongCommand = true;
+		}
+		void outRemoveFigure(Figure * figure) {
+			cout << "Видаляємо фігуру з id: " << figure->getId() << "..." << endl;
+		}
+		void outRemoveFigureSucces() {
+			cout << "Видалено" << endl;
 		}
 };
 #endif

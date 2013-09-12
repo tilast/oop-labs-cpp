@@ -11,6 +11,7 @@ class Zigzag: public Figure {
         Zigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points, Border border):Figure() {
             this->setTopLeft(topLeft);
             this->setBottomRight(bottomRight);
+            this->setPoints(points);
 			this->_stepsAmount = stepsAmount;
             this->_border = border;
             this->_insurality = false;

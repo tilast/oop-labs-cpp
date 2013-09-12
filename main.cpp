@@ -176,6 +176,36 @@ int main()
                 	}
                 }
             }
+        } else if(!commands[0].compare("do")) {
+			if(!commands[1].compare("figure")) {
+        		if(!commands[2].compare("topLeft")) {
+        			
+        		} else if(!commands[2].compare("bottomRight")) {
+        			
+        		} else if(!commands[2].compare("border")) {
+        			
+        		} else if(!commands[2].compare("background")) {
+        			
+        		} else if(!commands[2].compare("controlPoint")) {
+        			
+        		} else if(!commands[2].compare("points")) {
+        			if(!commands[3].compare("number")) {
+        				
+        			} else {
+        				
+        			}
+        		} else if(!commands[2].compare("remove")) {
+        			if(currentFigure) {
+        				console->outRemoveFigure(currentFigure);
+        				storage->remove(currentFigure->getId());
+        				currentFigure = NULL;
+        				console->outRemoveFigureSucces();
+        				console->outIgnore(3);
+        			} else {
+        				console->outEmptyCurrentFigure(&excessiveSymbol);
+        			}
+        		}
+			}
         } else if(!commands[0].compare("exit")) {
             exit = true;
             break;
