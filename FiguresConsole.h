@@ -79,6 +79,10 @@ class FiguresConsole {
         void outInputCommand() {
             cout << "Введіть команду" << endl;
         }
+
+        void outGetNumber() {
+            cout << "Введіть номер: " << endl;
+        }
         
         void outWrongCommand(string command, bool *wrongCommand) {
             cout << "Невірна команда '" << command << "'" << endl;

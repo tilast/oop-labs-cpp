@@ -78,5 +78,12 @@ class Zigzag: public Figure {
             
             return size - oldSize;
         }
+
+        int getSize() {
+            return this->_stepsAmount;
+        }
+        void changePoint(Point point, int number) {
+            this->_points[number-1] = point;
+        }
 };
 #endif

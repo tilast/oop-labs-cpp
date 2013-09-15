@@ -231,7 +231,14 @@ int main()
                             ((Zigzag*)currentFigure)->addPoint(tmpPoint);
                             console->outIgnore(1);
                         }
-        			} else {
+        			} else if(!commands[3].compare("number")) {
+                        console->outGetNumber();
+                        int wtNumber = console->getInt();
+                        if(wtNumber < ((Zigzag*)currentFigure)->getSize()) {
+                            Point changePoint = console->getPoint();
+                            ((Zigzag*)currentFigure)->changePoint(changePoint, wtNumber);
+                        }
+                    } else {
         				wrongCommand = true;
         			}
         		} else if(!commands[2].compare("remove")) {
