@@ -10,16 +10,27 @@ class FiguresConsole {
     public :
 
         double getDouble() {
-            double tpm;
-            cin >> tpm;
+            double tmp;
+            cin >> tmp;
             
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cin >> tmp;
+            }
 
-            return tpm;
+            return tmp;
         }
         
         int getInt() {
             int tmp;
             cin >> tmp;
+
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cin >> tmp;
+            }
             
             return tmp;
         }
@@ -29,7 +40,19 @@ class FiguresConsole {
             cout << "Х:" << endl;
             cin >> point.x;
             cout << "Y:" << endl;
-            cin >> point.y; 
+            cin >> point.y;
+
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cout << "Х:" << endl;
+                cin >> point.x;
+                cout << "Y:" << endl;
+                cin >> point.y;
+            }
+            /*
+            cin.clear();
+            cin.ignore(1);*/
             
             return point;
         }
@@ -43,6 +66,18 @@ class FiguresConsole {
             cout << "b: ";
             cin >> color.b;
 
+
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cout << "r: ";
+                cin >> color.r;
+                cout << "g: ";
+                cin >> color.g;
+                cout << "b: ";
+                cin >> color.b;
+            }
+
             return color;
         }
 
@@ -51,6 +86,13 @@ class FiguresConsole {
 
             cout << "Властивості границь. Введіть товщину: " << endl;
             cin >> tmp.width;
+
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cin >> tmp.width;                
+            }
+
             cout << "Введіть тип: " << endl;
             cin >> tmp.type;
             cout << "Введіть колір: " << endl;
@@ -63,13 +105,18 @@ class FiguresConsole {
             cout << "Введіть id: " << endl;
             cin >> id;
             
+            while(cin.fail()) {
+                cin.clear();
+                cin.ignore(100000, '\n');
+                cin >> id;                
+            }
+
             return id;
         }
         
         double getControlPoint() {
             cout << "X: " << endl;
-            double point;
-            cin >> point;
+            double point = this->getDouble();
             
             return point;
         }
