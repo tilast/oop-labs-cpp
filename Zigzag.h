@@ -8,21 +8,47 @@ class Zigzag: public Figure {
         int _stepsAmount;
         vector<Point> _points;
     public :
-        Zigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points, Border border):Figure() {
-            this->setTopLeft(topLeft);
-            this->setBottomRight(bottomRight);
+        Zigzag(int stepsAmount, vector<Point> points, Border border):Figure() {
             this->setPoints(points);
 			this->_stepsAmount = stepsAmount;
             this->_border = border;
             this->_insurality = false;
             this->_type = 3;
         }
-        Zigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points):Figure() {
-            this->setTopLeft(topLeft);
-            this->setBottomRight(bottomRight);
+        Zigzag(int stepsAmount, vector<Point> points):Figure() {
 			this->_stepsAmount = stepsAmount;
             this->_insurality = false;
             this->_type = 3;
+        }
+
+        /**
+        * getTopLeft
+        * @return double
+        */
+        void getTopLeft() {
+        }
+
+        /**
+        * setTopLeft
+        * @param double coordinate - coordinate of this point
+        * @return void
+        */
+        void setTopLeft(Point point) {
+        }
+
+        /**
+        * getBottomRight
+        * @return double
+        */
+        void getBottomRight() {
+        }
+
+        /**
+        * setBottomRight
+        * @param double coordinate - coordinate of this point
+        * @return void
+        */
+        void setBottomRight(Point point) {
         }
 
         void setPoints(vector<Point> points) {
@@ -40,6 +66,17 @@ class Zigzag: public Figure {
         void deletePoint(int number) {
         	this->_points.erase(this->_points.begin() + number);
         	this->_stepsAmount--;
+        }
+        void addPoint(Point point) {
+            this->_points.push_back(point);
+        }
+        void setBackground() {}
+        bool resize(int size) {
+            int oldSize = this->_stepsAmount;
+            this->_stepsAmount = size;
+            this->_points.resize(size);
+            
+            return size - oldSize;
         }
 };
 #endif

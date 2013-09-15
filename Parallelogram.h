@@ -29,7 +29,7 @@ class Parallelogram: public Rectangle {
         * @param double y
         * @return void
         */
-        virtual void transfer(double x, double y) {
+        void transfer(double x, double y) {
             Point transfer = {x: x, y: y};
             this->_topLeft += transfer;
             this->_bottomRight += transfer;

@@ -66,8 +66,8 @@ class FiguresStorage {
             this->_figures.push_back(newPar);
             return newPar;
         }
-        Zigzag* addZigzag(Point topLeft, Point bottomRight, int stepsAmount, vector<Point> points, Border border) {
-        	Zigzag * newZig = new Zigzag(topLeft, bottomRight, stepsAmount, points, border);
+        Zigzag* addZigzag(int stepsAmount, vector<Point> points, Border border) {
+        	Zigzag * newZig = new Zigzag(stepsAmount, points, border);
         	this->_figures.push_back(newZig);
         	return newZig;
         }

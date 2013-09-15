@@ -5,8 +5,12 @@
 * structure for borders
 */
 struct Border {
-    double width = 1.0;
-    string type = "solid";
+	Border() {
+		width = 1.0;
+		type = "solid";
+	}
+    double width;
+    string type;
     colorRGB RGB;
 };
 #endif

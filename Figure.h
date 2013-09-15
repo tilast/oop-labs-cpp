@@ -28,8 +28,7 @@ class Figure {
         * @return void
         */
         void setTopLeft(Point point) {
-            this->_topLeft.x = point.x;
-            this->_topLeft.y = point.y;
+            this->_topLeft = point;
         }
 
         /**
@@ -46,8 +45,7 @@ class Figure {
         * @return void
         */
         void setBottomRight(Point point) {
-            this->_bottomRight.x = point.x;
-            this->_bottomRight.y = point.y;
+            this->_bottomRight = point;
         }
 
         /**

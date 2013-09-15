@@ -5,6 +5,11 @@
 * structure for color in the rgb format
 */
 struct colorRGB {
-    int r = 255, g = 255, b = 255;
+	colorRGB()  {
+		r = 255;
+		g = 255;
+		b = 255;
+	}
+    int r, g, b;
 };
 #endif

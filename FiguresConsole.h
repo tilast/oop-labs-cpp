@@ -5,8 +5,8 @@
 * class for work with console
 */
 class FiguresConsole {
-	private :
-		bool _wrongCommand;
+    private :
+        bool _wrongCommand;
     public :
 
         double getDouble() {
@@ -18,19 +18,19 @@ class FiguresConsole {
         }
         
         int getInt() {
-        	int tmp;
-        	cin >> tmp;
-        	
-        	return tmp;
+            int tmp;
+            cin >> tmp;
+            
+            return tmp;
         }
 
         Point getPoint() {
-        	Point point;
-			cout << "Õ:" << endl;
+            Point point;
+            cout << "Ð¥:" << endl;
             cin >> point.x;
             cout << "Y:" << endl;
-            cin >> point.y;	
-			
+            cin >> point.y; 
+            
             return point;
         }
 
@@ -49,133 +49,142 @@ class FiguresConsole {
         Border getBorder() {
             Border tmp;
 
-            cout << "Âëàñòèâîñò³ ãðàíèöü. Ââåä³òü òîâùèíó: " << endl;
+            cout << "Ð’Ð»Ð°ÑÑ‚Ð¸Ð²Ð¾ÑÑ‚Ñ– Ð³Ñ€Ð°Ð½Ð¸Ñ†ÑŒ. Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ‚Ð¾Ð²Ñ‰Ð¸Ð½Ñƒ: " << endl;
             cin >> tmp.width;
-            cout << "Ââåä³òü òèï: " << endl;
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ‚Ð¸Ð¿: " << endl;
             cin >> tmp.type;
-            cout << "Ââåä³òü êîë³ð: " << endl;
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð»Ñ–Ñ€: " << endl;
             tmp.RGB = this->getRGB();
 
             return tmp;
         }
         int getId() {
-        	int id = -1;
-        	cout << "Ââåä³òü id: " << endl;
-        	cin >> id;
-        	
-        	return id;
+            int id = -1;
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ id: " << endl;
+            cin >> id;
+            
+            return id;
         }
         
         double getControlPoint() {
-        	cout << "X: " << endl;
-			double point;
-        	cin >> point;
-        	
-        	return point;
+            cout << "X: " << endl;
+            double point;
+            cin >> point;
+            
+            return point;
         }
-		void outHello() {
-			cout << "Âàñ â³òàº êîíñîëüíèé âåêòîðíèé ðåäàêòîð ïðèì³òèâ³â" << endl;
-		}
-		void outInputCommand() {
-			cout << "Ââåä³òü êîìàíäó" << endl;
-		}
-		
-		void outWrongCommand(string command, bool *wrongCommand) {
-            cout << "Íåâ³ðíà êîìàíäà '" << command << "'" << endl;
+        void outHello() {
+            cout << "Ð’Ð°Ñ Ð²Ñ–Ñ‚Ð°Ñ” ÐºÐ¾Ð½ÑÐ¾Ð»ÑŒÐ½Ð¸Ð¹ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð½Ð¸Ð¹ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€ Ð¿Ñ€Ð¸Ð¼Ñ–Ñ‚Ð¸Ð²Ñ–Ð²" << endl;
+        }
+        void outInputCommand() {
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñƒ" << endl;
+        }
+        
+        void outWrongCommand(string command, bool *wrongCommand) {
+            cout << "ÐÐµÐ²Ñ–Ñ€Ð½Ð° ÐºÐ¾Ð¼Ð°Ð½Ð´Ð° '" << command << "'" << endl;
             *wrongCommand = true;
         }
-		
-		void outControlPoint() {
-			cout << "Ââåä³òü êîíòðîëüíó òî÷êó" << endl;
-		}
+        
+        void outControlPoint() {
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒÐ½Ñƒ Ñ‚Ð¾Ñ‡ÐºÑƒ" << endl;
+        }
 
         void outTopLeft() {
-            cout << "Ââåä³òü êîîðäèíàòè âåðõíüî¿ ë³âî¿ òî÷êè: " << endl;
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð¸ Ð²ÐµÑ€Ñ…Ð½ÑŒÐ¾Ñ— Ð»Ñ–Ð²Ð¾Ñ— Ñ‚Ð¾Ñ‡ÐºÐ¸: " << endl;
         }
 
         void outBottomRight() {
-            cout << "Ââåä³òü êîîðäèíàòè ïðàâî¿ íèæíüî¿ òî÷êè: " << endl;
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð¸ Ð¿Ñ€Ð°Ð²Ð¾Ñ— Ð½Ð¸Ð¶Ð½ÑŒÐ¾Ñ— Ñ‚Ð¾Ñ‡ÐºÐ¸: " << endl;
         }
         void outNeedBorder() {
-            cout << "Ïîòð³áíî çàäàâàòè ãðàíèö³?(1/0)" << endl;
+            cout << "ÐŸÐ¾Ñ‚Ñ€Ñ–Ð±Ð½Ð¾ Ð·Ð°Ð´Ð°Ð²Ð°Ñ‚Ð¸ Ð³Ñ€Ð°Ð½Ð¸Ñ†Ñ–?(1/0)" << endl;
         }
         void outNeedBackground() {
-            cout << "Ïîòð³áíî çàäàâàòè êîë³ð?(1/0)" << endl;
+            cout << "ÐŸÐ¾Ñ‚Ñ€Ñ–Ð±Ð½Ð¾ Ð·Ð°Ð´Ð°Ð²Ð°Ñ‚Ð¸ ÐºÐ¾Ð»Ñ–Ñ€?(1/0)" << endl;
         }
         void outHowMuchPoints() {
-        	cout << "Ñê³ëüêè òî÷îê ó çèãçàãó?" << endl;
+            cout << "Ð¡ÐºÑ–Ð»ÑŒÐºÐ¸ Ñ‚Ð¾Ñ‡Ð¾Ðº Ñƒ Ð·Ð¸Ð³Ð·Ð°Ð³Ñƒ?" << endl;
         }
         
+        void outBackground() {
+            cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ ÐºÐ¾Ð»Ñ–Ñ€ Ñ‚Ð»Ð°: " << endl;
+        }
+
         void outIgnore(int amount) {
-        	cin.ignore(amount);
+            cin.ignore(amount);
         }
         void outIgnoreNL() {
-        	cin.ignore('\n');
+            cin.ignore('\n');
         }
         void outFigureId(Figure * figure) {
-        	cout << "ID ô³ãóðè: " << figure->getId() << endl;
+            cout << "ID Ñ„Ñ–Ð³ÑƒÑ€Ð¸: " << figure->getId() << endl;
         }
         
         void outFigureInfo(Figure * figure, bool * excessiveSymbol) {
-        	this->outFigureId(figure);
-			this->outPoint("Âåðõíÿ ë³âà òî÷êà: ", figure->getTopLeft());
-        	this->outPoint("Íèæíÿ ïðàâà òî÷êà: ", figure->getBottomRight());
-        	this->outBorder(figure->getBorder());
-        	
-			switch(figure->getType()) {
-        		case 1 :
-        			this->outRectangleInfo((Rectangle*)figure);
-        			break;
-        		case 2 :
-        			this->outParallelogramInfo((Parallelogram*)figure);
-        			break;
-        		case 3 :
-        			this->outZigzagInfo((Zigzag*)figure);
-        			break;
-        		default :
-        			cout << "Íåçíàéîìà ô³ãóðà" << endl;
-        	}
-        	
-        	*excessiveSymbol = true;
+            this->outFigureId(figure);
+            if(figure->getType() != 3) {
+                this->outPoint("Ð’ÐµÑ€Ñ…Ð½Ñ Ð»Ñ–Ð²Ð° Ñ‚Ð¾Ñ‡ÐºÐ°: ", figure->getTopLeft());
+                this->outPoint("ÐÐ¸Ð¶Ð½Ñ Ð¿Ñ€Ð°Ð²Ð° Ñ‚Ð¾Ñ‡ÐºÐ°: ", figure->getBottomRight());
+            }
+            this->outBorder(figure->getBorder());
+            
+            switch(figure->getType()) {
+                case 1 :
+                    this->outRectangleInfo((Rectangle*)figure);
+                    break;
+                case 2 :
+                    this->outParallelogramInfo((Parallelogram*)figure);
+                    break;
+                case 3 :
+                    this->outZigzagInfo((Zigzag*)figure);
+                    break;
+                default :
+                    cout << "ÐÐµÐ·Ð½Ð°Ð¹Ð¾Ð¼Ð° Ñ„Ñ–Ð³ÑƒÑ€Ð°" << endl;
+            }
+            
+            *excessiveSymbol = true;
         }
         
         void outPoint(string what, Point point) {
-        	cout << what << "x: " << point.x << "; y: " << point.y << endl;
+            cout << what << "x: " << point.x << "; y: " << point.y << endl;
         }
         void outBorder(Border border) {
-			cout << "Òîâùèíà ë³í³¿: " << border.width << ", " << "òèï ë³í³¿: " << border.type << ", ";
-			this->outColor(border.RGB);
-		}
-		void outColor(colorRGB color) {
-			cout << "r: " << color.r << ", g: " << color.g << ", b: " << color.b << endl;
-		}
+            cout << "Ð¢Ð¾Ð²Ñ‰Ð¸Ð½Ð° Ð»Ñ–Ð½Ñ–Ñ—: " << border.width << ", " << "Ñ‚Ð¸Ð¿ Ð»Ñ–Ð½Ñ–Ñ—: " << border.type << ", ";
+            this->outColor(border.RGB);
+        }
+        void outColor(colorRGB color) {
+            cout << "r: " << color.r << ", g: " << color.g << ", b: " << color.b << endl;
+        }
         
         void outRectangleInfo(Rectangle * figure) {
-        	cout << "Êîë³ð òëà: ";
-        	this->outColor(figure->getBackground());
-		}
-		void outParallelogramInfo(Parallelogram * figure) {
-        	this->outPoint("Êîíòðîëüíà òî÷êà: ", figure->getControlPoint());
-        	cout << "Êîë³ð òëà: ";
-        	this->outColor(figure->getBackground());
-		}
-		void outZigzagInfo(Zigzag * figure) {
-        	cout << "Òî÷êè: " << endl;
-        	vector<Point> points = figure->getPoints();
-        	for(int i = 0; i < points.size(); i++) {
-        		this->outPoint("", points[i]);
-        	}
-		}
-		
-		void outEmptyCurrentFigure(bool *wrongCommand) {
-			cout << "Âè íå îáðàëè ô³ãóðó" << endl;
-			*wrongCommand = true;
-		}
-		void outRemoveFigure(Figure * figure) {
-			cout << "Âèäàëÿºìî ô³ãóðó ç id: " << figure->getId() << "..." << endl;
-		}
-		void outRemoveFigureSucces() {
-			cout << "Âèäàëåíî" << endl;
-		}
+            cout << "ÐšÐ¾Ð»Ñ–Ñ€ Ñ‚Ð»Ð°: ";
+            this->outColor(figure->getBackground());
+        }
+        void outParallelogramInfo(Parallelogram * figure) {
+            this->outPoint("ÐšÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒÐ½Ð° Ñ‚Ð¾Ñ‡ÐºÐ°: ", figure->getControlPoint());
+            cout << "ÐšÐ¾Ð»Ñ–Ñ€ Ñ‚Ð»Ð°: ";
+            this->outColor(figure->getBackground());
+        }
+        void outZigzagInfo(Zigzag * figure) {
+            cout << "Ð¢Ð¾Ñ‡ÐºÐ¸: " << endl;
+            vector<Point> points = figure->getPoints();
+            for(int i = 0; i < points.size(); i++) {
+                this->outPoint("", points[i]);
+            }
+        }
+        
+        void outEmptyCurrentFigure(bool *wrongCommand) {
+            cout << "Ð’Ð¸ Ð½Ðµ Ð¾Ð±Ñ€Ð°Ð»Ð¸ Ñ„Ñ–Ð³ÑƒÑ€Ñƒ" << endl;
+            *wrongCommand = true;
+        }
+        void outEmptyCurrentFigure() {
+            cout << "Ð’Ð¸ Ð½Ðµ Ð¾Ð±Ñ€Ð°Ð»Ð¸ Ñ„Ñ–Ð³ÑƒÑ€Ñƒ" << endl;
+        }
+        void outRemoveFigure(Figure * figure) {
+            cout << "Ð’Ð¸Ð´Ð°Ð»ÑÑ”Ð¼Ð¾ Ñ„Ñ–Ð³ÑƒÑ€Ñƒ Ð· id: " << figure->getId() << "..." << endl;
+        }
+        void outRemoveFigureSucces() {
+            cout << "Ð’Ð¸Ð´Ð°Ð»ÐµÐ½Ð¾" << endl;
+        }
 };
 #endif

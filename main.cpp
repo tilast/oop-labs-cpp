@@ -38,7 +38,7 @@ int main()
     Figure * currentFigure = NULL;
     FiguresGroup * currentGroup = NULL;
     // variable for working loop
-	bool exit = false, excessiveSymbol = false;
+	bool exit = false, excessiveSymbol = false, wrongCommand = false;
     
 	console->outHello();
     console->outInputCommand();
@@ -128,14 +128,8 @@ int main()
                 } else if(!commands[2].compare("zigzag")) {
                 	console->outHowMuchPoints();
                 	int howMuchPoints = console->getInt();
-                	
-					console->outTopLeft();
-        	        Point topLeft = console->getPoint();
-    	            console->outBottomRight();
-	                Point bottomRight = console->getPoint();
-	                
 	                vector<Point> zigzagPoints;
-	                for(int i = 0; i < howMuchPoints - 2; i++) {
+	                for(int i = 0; i < howMuchPoints; i++) {
 	                	zigzagPoints.push_back(console->getPoint());
 	                	console->outIgnore(1);
 	                }
@@ -149,17 +143,19 @@ int main()
                         border = console->getBorder();
                     }
 
-                    currentFigure = storage->addZigzag(topLeft, bottomRight, howMuchPoints, zigzagPoints, border);
+                    currentFigure = storage->addZigzag(howMuchPoints, zigzagPoints, border);
 
                     console->outFigureId(currentFigure);
                 } else {
-                	console->outWrongCommand(command, &excessiveSymbol);
+                    wrongCommand = true;
+                	//console->outWrongCommand(command, &excessiveSymbol);
                 }
             }
             else if(!commands[1].compare("group")) {
             	currentGroup = storage->addGroup();
             } else {
-            	console->outWrongCommand(command, &excessiveSymbol);
+                wrongCommand = true;
+            	//console->outWrongCommand(command, &excessiveSymbol);
             }
         } else if(!commands[0].compare("get")) {
             if(!commands[1].compare("figure")) {
@@ -168,6 +164,9 @@ int main()
                 } else if(!commands[2].compare("id")) {
                 	int id = console->getId();
                     currentFigure = storage->find(id);
+                    if(!currentFigure) {
+                        console->outEmptyCurrentFigure();
+                    }
                 } else if(!commands[2].compare("info")) {
                 	if(currentFigure) {
                 		console->outFigureInfo(currentFigure, &excessiveSymbol);
@@ -175,42 +174,67 @@ int main()
                 		console->outEmptyCurrentFigure(&excessiveSymbol);
                 	}
                 }
+            } else {
+                wrongCommand = true;
             }
         } else if(!commands[0].compare("do")) {
-			if(!commands[1].compare("figure")) {
+			if(!commands[1].compare("figure") && currentFigure != NULL) {
         		if(!commands[2].compare("topLeft")) {
-        			
+        			console->outTopLeft();
+                    Point topLeft = console->getPoint();
+                    currentFigure->setTopLeft(topLeft);
         		} else if(!commands[2].compare("bottomRight")) {
-        			
+                    console->outBottomRight();
+                    Point bottomRight = console->getPoint();
+                    currentFigure->setBottomRight(bottomRight);
         		} else if(!commands[2].compare("border")) {
-        			
-        		} else if(!commands[2].compare("background")) {
-        			
-        		} else if(!commands[2].compare("controlPoint")) {
-        			
-        		} else if(!commands[2].compare("points")) {
-        			if(!commands[3].compare("number")) {
-        				
+                    Border border = console->getBorder();
+                    currentFigure->setBorder(border);
+        		} else if(!commands[2].compare("background") && currentFigure->getType() != 3) {
+        			console->outBackground();
+                    colorRGB color = console->getRGB();
+                    currentFigure->setBackground(color);
+        		} else if(!commands[2].compare("controlPoint") && currentFigure->getType() == 2) {
+        			double cp = console->getControlPoint();
+                    ((Parallelogram*)currentFigure)->setControlPoint(cp);
+        		} else if(!commands[2].compare("points") && currentFigure->getType() == 3) {
+        			if(!commands[3].compare("resize")) {
+        				console->outHowMuchPoints();
+                        int howMuchPoints = console->getInt();
+                        int howMuchPointsNeedToBeAdded = ((Zigzag*)currentFigure)->resize(howMuchPoints);
+                        Point tmpPoint;
+                        for(int i = 0; i < howMuchPointsNeedToBeAdded; i++) {
+                            tmpPoint = console->getPoint();
+                            ((Zigzag*)currentFigure)->addPoint(tmpPoint);
+                            console->outIgnore(1);
+                        }
         			} else {
-        				
+        				wrongCommand = true;
         			}
         		} else if(!commands[2].compare("remove")) {
-        			if(currentFigure) {
-        				console->outRemoveFigure(currentFigure);
-        				storage->remove(currentFigure->getId());
-        				currentFigure = NULL;
-        				console->outRemoveFigureSucces();
-        				console->outIgnore(3);
-        			} else {
-        				console->outEmptyCurrentFigure(&excessiveSymbol);
-        			}
-        		}
-			}
+    				console->outRemoveFigure(currentFigure);
+    				storage->remove(currentFigure->getId());
+    				currentFigure = NULL;
+    				console->outRemoveFigureSucces();
+    				console->outIgnore(3);
+        		} else {
+                    wrongCommand = true;
+                }
+			} else if(currentFigure == NULL) {
+                console->outEmptyCurrentFigure(&excessiveSymbol);
+            } else {
+                wrongCommand = true;
+            }
         } else if(!commands[0].compare("exit")) {
             exit = true;
             break;
         } else {
+            wrongCommand = true;
+        }
+
+        if(wrongCommand) {
             console->outWrongCommand(command, &excessiveSymbol);
+            wrongCommand = false;
         }
 
         if(!excessiveSymbol) {
@@ -222,4 +246,3 @@ int main()
     
     return 0;
 }
-
