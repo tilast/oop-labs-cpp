@@ -14,19 +14,19 @@
 
 using namespace std;
 
-#include "colorRGB.h"
-#include "Border.h"
-#include "Point.h"
+#include "classes/colorRGB.h"
+#include "classes/Border.h"
+#include "classes/Point.h"
 
-#include "Figure.h"
-#include "Rectangle.h"
-#include "Parallelogram.h"
-#include "Zigzag.h"
+#include "classes/Figure.h"
+#include "classes/Rectangle.h"
+#include "classes/Parallelogram.h"
+#include "classes/Zigzag.h"
 
-#include "FiguresGroup.h"
-#include "FiguresStorage.h"
+#include "classes/FiguresGroup.h"
+#include "classes/FiguresStorage.h"
 
-#include "FiguresConsole.h"
+#include "classes/FiguresConsole.h"
 
 int main()
 {
