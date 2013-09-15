@@ -11,7 +11,7 @@ class FiguresGroup {
         static int lastId;
 
         FiguresGroup() {
-            this->_id = ++Figure::lastId;
+            this->_id = ++FiguresGroup::lastId;
         }
 
         int getId() {

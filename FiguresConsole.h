@@ -172,7 +172,10 @@ class FiguresConsole {
                 this->outPoint("", points[i]);
             }
         }
-        
+        void outEmptyCurrentGroup(bool *wrongCommand) {
+            cout << "Ви не обрали групу" << endl;
+            *wrongCommand = true;
+        }
         void outEmptyCurrentFigure(bool *wrongCommand) {
             cout << "Ви не обрали фігуру" << endl;
             *wrongCommand = true;
@@ -185,6 +188,18 @@ class FiguresConsole {
         }
         void outRemoveFigureSucces() {
             cout << "Видалено" << endl;
+        }
+
+        void outId(int id, string type) {
+            cout << "ID " << type << ": " << id << endl;
+        }
+
+        void outGroupFigures(vector<Figure*> figures) {
+            for(int i = 0; i < figures.size(); i++) {
+                cout << figures[i]->getId() << " ";
+            }
+
+            cout << endl;
         }
 };
 #endif

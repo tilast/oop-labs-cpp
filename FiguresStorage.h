@@ -129,5 +129,15 @@ class FiguresStorage {
             delete this->_groups[number];
             this->_groups.erase(this->_groups.begin() + number);
         }
+
+        FiguresGroup* findGroup(int id) {
+            FiguresGroup* result = NULL;
+            int number = this->_findGroupNumber(id);
+            if(number > 0) {
+                result = this->_groups[number];
+            }
+
+            return result;
+        }
 };
 #endif

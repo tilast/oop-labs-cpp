@@ -146,21 +146,34 @@ int main()
                     currentFigure = storage->addZigzag(howMuchPoints, zigzagPoints, border);
 
                     console->outFigureId(currentFigure);
+                } else if(!commands[2].compare("group")) {
+                    if(currentFigure != NULL) {
+                        if(currentGroup == NULL) {
+                            currentGroup = storage->addGroup();
+                            console->outId(currentGroup->getId(), "групи");
+                            excessiveSymbol = true;
+                        }
+
+                        currentGroup->add(currentFigure);
+                    } else {
+                        console->outEmptyCurrentFigure(&excessiveSymbol);
+                    }
                 } else {
                     wrongCommand = true;
-                	//console->outWrongCommand(command, &excessiveSymbol);
                 }
             }
             else if(!commands[1].compare("group")) {
             	currentGroup = storage->addGroup();
+                console->outId(currentGroup->getId(), "групи");
+                excessiveSymbol = true;
             } else {
                 wrongCommand = true;
-            	//console->outWrongCommand(command, &excessiveSymbol);
             }
         } else if(!commands[0].compare("get")) {
             if(!commands[1].compare("figure")) {
                 if(!commands[2].compare("count")) {
                     cout << storage->getAmount() << endl;
+                    excessiveSymbol = true;
                 } else if(!commands[2].compare("id")) {
                 	int id = console->getId();
                     currentFigure = storage->find(id);
@@ -173,6 +186,16 @@ int main()
                 	} else {
                 		console->outEmptyCurrentFigure(&excessiveSymbol);
                 	}
+                }
+            } else if(!commands[1].compare("group")) {
+                if(!commands[2].compare("id")) {
+                    int id = console->getId();
+                    currentGroup = storage->findGroup(id);
+                    if(currentGroup == NULL) {
+                        console->outEmptyCurrentGroup(&excessiveSymbol);
+                    }
+                } else if(!commands[2].compare("figures")) {
+                    console->outGroupFigures(currentGroup->getGroup());
                 }
             } else {
                 wrongCommand = true;
@@ -222,6 +245,12 @@ int main()
                 }
 			} else if(currentFigure == NULL) {
                 console->outEmptyCurrentFigure(&excessiveSymbol);
+            } else if(!commands[1].compare("group") && currentGroup != NULL) {
+                if(!commands[2].compare("remove")) {
+                    storage->removeGroup(currentGroup->getId());
+                }
+            } else if(currentGroup == NULL) {
+                console->outEmptyCurrentGroup(&excessiveSymbol);
             } else {
                 wrongCommand = true;
             }
