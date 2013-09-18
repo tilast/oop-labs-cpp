@@ -1,5 +1,18 @@
 #ifndef FiguresStorage_h_
 #define FiguresStorage_h_
+
+#include "colorRGB.h"
+#include "Border.h"
+#include "Point.h"
+
+#include "Figure.h"
+#include "Rectangle.h"
+#include "Parallelogram.h"
+#include "Zigzag.h"
+
+#include "FiguresGroup.h"
+
+
 /**
 * class FiguresStorage
 */

@@ -1,5 +1,10 @@
 #ifndef Figure_h_
 #define Figure_h_
+
+#include "colorRGB.h"
+#include "Border.h"
+#include "Point.h"
+
 /**
 * class Figure
 * abstract class for all geometric figures

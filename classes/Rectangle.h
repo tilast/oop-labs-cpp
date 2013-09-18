@@ -1,5 +1,12 @@
 #ifndef Rectangle_h_
 #define Rectangle_h_
+
+#include "colorRGB.h"
+#include "Border.h"
+#include "Point.h"
+
+#include "Figure.h"
+
 /**
 * class Rectangle
 */

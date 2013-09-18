@@ -1,5 +1,12 @@
 #ifndef Zigzag_h_
 #define Zigzag_h_
+
+#include "colorRGB.h"
+#include "Border.h"
+#include "Point.h"
+
+#include "Figure.h"
+
 /**
 * class Zigzag
 */

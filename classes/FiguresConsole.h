@@ -1,5 +1,11 @@
 #ifndef FiguresConsole_h_
 #define FiguresConsole_h_
+
+class Figure;
+class Rectangle;
+class Parallelogram;
+class Zigzag;
+
 /**
 * class FiguresConsole
 * class for work with console

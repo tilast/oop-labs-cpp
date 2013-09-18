@@ -1,5 +1,8 @@
 #ifndef FiguresGroup_h_
 #define FiguresGroup_h_
+
+#include "Figure.h"
+
 /**
 * class Figure Group
 */

@@ -1,5 +1,12 @@
 #ifndef Parallelogram_h_
 #define Parallelogram_h_
+
+#include "colorRGB.h"
+#include "Border.h"
+#include "Point.h"
+
+#include "Rectangle.h"
+
 /**
 * class Paralellogram
 */

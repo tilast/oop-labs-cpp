@@ -1,5 +1,9 @@
 #ifndef Border_h_
 #define Border_h_
+
+#include "colorRGB.h"
+#include <iostream>
+
 /**
 * struct Border
 * structure for borders
