@@ -24,7 +24,7 @@ class FiguresGroup {
         * add
         */
         void add(Figure* figure) {
-            if(this->inGroup(figure) >= 0) {
+            if(this->inGroup(figure) < 0) {
                 this->_figures.push_back(figure);
             }
         }
@@ -34,7 +34,7 @@ class FiguresGroup {
         */
         void add(vector<Figure*> fgrs) {
             for(int j = 0; j < fgrs.size(); j++) {
-                if(inGroup(fgrs[j]) >= 0) {
+                if(inGroup(fgrs[j]) < 0) {
                     this->_figures.push_back(fgrs[j]);
                 }
             }
@@ -70,7 +70,9 @@ class FiguresGroup {
 
         void setBackground(colorRGB color) {
             for(int i = 0; i < this->_figures.size(); i++) {
-                this->_figures[i]->setBackground(color);
+                if(this->_figures[i]->getId() != 3) {
+                    this->_figures[i]->setBackground(color);
+                }
             }
         }
 

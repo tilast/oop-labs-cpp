@@ -78,7 +78,7 @@ class Zigzag: public Figure {
             this->_points.push_back(point);
         }
         void setBackground() {}
-        bool resize(int size) {
+        int resize(int size) {
             int oldSize = this->_stepsAmount;
             this->_stepsAmount = size;
             this->_points.resize(size);

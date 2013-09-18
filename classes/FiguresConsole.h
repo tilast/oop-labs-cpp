@@ -201,6 +201,15 @@ class FiguresConsole {
             
             *excessiveSymbol = true;
         }
+
+        void outGroupInfo(FiguresGroup * group, bool * excessiveSymbol) {
+            vector<Figure*> figures = group->getGroup();
+            cout << figures.size() << endl;
+            for(int i = 0; i < figures.size(); i++) {
+                this->outFigureInfo(figures[i], excessiveSymbol);
+                cout << "==========" << endl;
+            }
+        }
         
         void outPoint(string what, Point point) {
             cout << what << "x: " << point.x << "; y: " << point.y << endl;

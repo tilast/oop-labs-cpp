@@ -140,10 +140,10 @@ int main()
                         if(currentGroup == NULL) {
                             currentGroup = storage->addGroup();
                             console->outId(currentGroup->getId(), "групи");
-                            excessiveSymbol = true;
                         }
 
                         currentGroup->add(currentFigure);
+                        excessiveSymbol = true;
                     } else {
                         console->outEmptyCurrentFigure(&excessiveSymbol);
                     }
@@ -185,6 +185,8 @@ int main()
                     }
                 } else if(!commands[2].compare("figures")) {
                     console->outGroupFigures(currentGroup->getGroup());
+                } else if(!commands[2].compare("info")) {
+                    console->outGroupInfo(currentGroup, &excessiveSymbol);
                 }
             } else {
                 wrongCommand = true;
@@ -244,6 +246,15 @@ int main()
             } else if(!commands[1].compare("group") && currentGroup != NULL) {
                 if(!commands[2].compare("remove")) {
                     storage->removeGroup(currentGroup->getId());
+                    excessiveSymbol = false;
+                } else if(!commands[2].compare("border")) {
+                    Border border = console->getBorder();
+                    currentGroup->setBorder(border);
+                } else if(!commands[2].compare("background")) {
+                    colorRGB color = console->getRGB();
+                    currentGroup->setBackground(color);
+                } else {
+                    wrongCommand = true;
                 }
             } else if(currentGroup == NULL) {
                 console->outEmptyCurrentGroup(&excessiveSymbol);
