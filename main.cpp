@@ -268,6 +268,8 @@ int main()
         	excessiveSymbol = false;
         }
     }
+
+    delete console, storage, currentFigure, currentGroup;
     
     return 0;
 }
