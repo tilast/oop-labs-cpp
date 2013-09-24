@@ -77,7 +77,9 @@ class Zigzag: public Figure {
         void addPoint(Point point) {
             this->_points.push_back(point);
         }
+
         void setBackground() {}
+        
         int resize(int size) {
             int oldSize = this->_stepsAmount;
             this->_stepsAmount = size;
@@ -89,8 +91,22 @@ class Zigzag: public Figure {
         int getSize() {
             return this->_stepsAmount;
         }
+        
         void changePoint(Point point, int number) {
             this->_points[number-1] = point;
+        }
+        
+        /**
+        * transfer
+        * @param double x
+        * @param double y
+        * @return void
+        */
+        void transfer(double x, double y) {
+            Point transfer = {x: x, y: y};
+            for(int i = 0, length = this->_points.size(); i < length; i++) {
+                this->_points[i] += transfer;
+            }
         }
 };
 #endif

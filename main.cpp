@@ -175,6 +175,8 @@ int main()
                 	} else {
                 		console->outEmptyCurrentFigure(&excessiveSymbol);
                 	}
+                } else {
+                    wrongCommand = true;
                 }
             } else if(!commands[1].compare("group")) {
                 if(!commands[2].compare("id")) {

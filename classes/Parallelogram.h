@@ -10,23 +10,32 @@
 /**
 * class Paralellogram
 */
-class Parallelogram: public Rectangle {
+class Parallelogram: public Figure {
     private :
         Point _controlPoint;
     public:
-        Parallelogram(Point topLeft, Point bottomRight, double controlPoint, Border border, colorRGB background):Rectangle(topLeft, bottomRight, border, background) {
+        Parallelogram(Point topLeft, Point bottomRight, double controlPoint, Border border, colorRGB background):Figure() {
+            this->_topLeft = topLeft;
+            this->_bottomRight = bottomRight;
+            this->_border = border;
+            this->_backgroundRGB = background;
+            this->_insurality = true;
             this->setControlPoint(controlPoint);
             this->_type = 2;
         }
-        Parallelogram(Point topLeft, Point bottomRight, double controlPoint):Rectangle(topLeft, bottomRight) {
+        Parallelogram(Point topLeft, Point bottomRight, double controlPoint):Figure() {
+            this->_topLeft = topLeft;
+            this->_bottomRight = bottomRight;
             this->setControlPoint(controlPoint);
             this->_type = 2;
         }
-        Parallelogram(Point topLeft, Point bottomRight):Rectangle(topLeft, bottomRight) {
+        Parallelogram(Point topLeft, Point bottomRight) {
+            this->_topLeft = topLeft;
+            this->_bottomRight = bottomRight;
             this->setControlPoint();
             this->_type = 2;
         }
-        Parallelogram(const Parallelogram& orig):Rectangle(orig) {
+        Parallelogram(const Parallelogram& orig) {
             this->_controlPoint = orig._controlPoint;
             this->_type = 2;
         }

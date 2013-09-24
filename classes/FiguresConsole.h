@@ -73,7 +73,7 @@ class FiguresConsole {
             cin >> color.b;
 
 
-            while(cin.fail()) {
+            while(cin.fail() || color.r > 255 || color.g > 255 | color.b > 255) {
                 cin.clear();
                 cin.ignore(100000, '\n');
                 cout << "r: ";
