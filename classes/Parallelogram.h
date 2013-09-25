@@ -36,6 +36,12 @@ class Parallelogram: public Figure {
             this->_type = 2;
         }
         Parallelogram(const Parallelogram& orig) {
+            this->_topLeft = orig._topLeft;
+            this->_bottomRight = orig._bottomRight;
+            this->_border = orig._border;
+            this->_backgroundRGB = orig._background;
+            this->_insurality = true;
+            
             this->_controlPoint = orig._controlPoint;
             this->_type = 2;
         }
